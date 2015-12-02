@@ -76,7 +76,8 @@ require 'S3.php';
 		}
 		
 		//if (!$s3->putObject($s3->inputResource(fopen($file->getRealPath(), 'r'), $fs1), $bucket, $uploaded, S3::ACL_PUBLIC_READ))
-		echo $file->getRealPath();
+
+
 		//if (!$s3->putObject($s3->inputResource( fopen($file->getRealPath(), 'rb'), $fs1), $bucket, $uploaded, S3::ACL_PUBLIC_READ))
 		if (!$s3->putObjectFile( $original, $bucket, $uploaded, S3::ACL_PUBLIC_READ))
 		{
@@ -87,7 +88,8 @@ require 'S3.php';
 	}
 	 public function getObject($bucket, $uri, $saveTo = false){
 		 $s3 = $this->getInstance();
-	 	$s3->getObject($bucket, $uri, $saveTo);
+	 	return $s3->getObject($bucket, $uri, $saveTo);
+
 	 }
 	// Testing connection :p
 	public function buckets()
