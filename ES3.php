@@ -1,16 +1,16 @@
 <?php
-
+require 'S3.php';
 /**
  * ES3 class file.
  *
- * ES3 is a wrapper for the excellent S3.php class provided by Donovan Schönknecht (@link http://undesigned.org.za/2007/10/22/amazon-s3-php-class)
+ * ES3 is a wrapper for the excellent S3.php class provided by Donovan Schï¿½nknecht (@link http://undesigned.org.za/2007/10/22/amazon-s3-php-class)
  * This wrapper contains minimal functionality as there is only so much I want to allow access to from the Yii public end
  *
  * @version 0.1
  *
  * @uses CFile
  * @author Dana Luther (dana.luther@gmail.com)
- * @copyright Copyright &copy; 2010 Dana Luther
+ * @copyright Copyright	 &copy; 2010 Dana Luther
  */
  class ES3 extends CApplicationComponent
 {
@@ -76,7 +76,8 @@
 		}
 		
 		//if (!$s3->putObject($s3->inputResource(fopen($file->getRealPath(), 'r'), $fs1), $bucket, $uploaded, S3::ACL_PUBLIC_READ))
-		echo $file->getRealPath();
+
+
 		//if (!$s3->putObject($s3->inputResource( fopen($file->getRealPath(), 'rb'), $fs1), $bucket, $uploaded, S3::ACL_PUBLIC_READ))
 		if (!$s3->putObjectFile( $original, $bucket, $uploaded, S3::ACL_PUBLIC_READ))
 		{
@@ -85,7 +86,11 @@
 		}
 		return true;
 	}
-	
+	 public function getObject($bucket, $uri, $saveTo = false){
+		 $s3 = $this->getInstance();
+	 	return $s3->getObject($bucket, $uri, $saveTo);
+
+	 }
 	// Testing connection :p
 	public function buckets()
 	{
